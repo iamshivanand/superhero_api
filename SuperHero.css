@@ -1,0 +1,44 @@
+/* body {
+  margin: 0px;
+} */
+.flip {
+  margin: auto;
+  height: 400px;
+  width: 500px;
+  /* border: 2px solid black; */
+  background-color: lightgrey;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  position: absolute;
+  transform-origin: 50% 50% 0px;
+  transition: all 0.2s;
+}
+#image-side {
+  transform: rotateX(0deg);
+}
+#details-side {
+  transform: rotateX(180deg);
+}
+.flip-side-1 {
+  transform: rotateX(0deg) !important;
+}
+.flip-side-2 {
+  transform: rotateX(180deg) !important;
+}
+.image-container {
+  height: auto;
+  width: 100%;
+  /* border: 2px solid black; */
+}
+.image-container img {
+  /* padding: 10px; */
+  max-width: 100%;
+  max-height: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* border: 2px dotted red; */
+}
+.name h4 {
+  margin: 0px;
+  margin-left: 10px;
+}
