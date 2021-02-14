@@ -94,6 +94,7 @@ if (document.URL.includes("SuperHero.html")) {
     superheros.map((superhero) => {
       var image_url = superhero.image.url;
       console.log(image_url);
+      //details of the superhero
       var name = superhero.name;
       var power = superhero.powerstats;
       var intelligence = power.intelligence;
@@ -121,6 +122,8 @@ if (document.URL.includes("SuperHero.html")) {
       button_div.className = "favourite-button-div";
       var button = document.createElement("button");
       button.setAttribute("id", "fav-button");
+      var detail_button = document.createElement("button");
+      detail_button.textContent = "Details";
       //appending the children for front side
       card_container.appendChild(front_div);
       front_div.appendChild(image_div);
@@ -131,7 +134,20 @@ if (document.URL.includes("SuperHero.html")) {
       name_heading.textContent = name;
       front_div.appendChild(button_div);
       button_div.appendChild(button);
-      button.textContent = "Favourite";
+      button_div.appendChild(detail_button);
+      var prevList = JSON.parse(localStorage.getItem("objList"));
+      already_there = false;
+      console.log(prevList);
+      prevList.map((each) => {
+        if (each.name === name) {
+          already_there = true;
+        }
+      });
+      if (already_there) {
+        button.textContent = "UnFavourite";
+      } else {
+        button.textContent = "Favourite";
+      }
 
       //from here we are creating the back side
       var back_div = document.createElement("div");
@@ -180,7 +196,52 @@ if (document.URL.includes("SuperHero.html")) {
       alter_egos_h4.textContent = "alter-egos: " + alter_egos;
       front_div.style.position = "relative";
       back_div.style.position = "absolute";
-      front_div.addEventListener(
+
+      button.addEventListener("click", function (event) {
+        var obj = {
+          image: image_url,
+          name,
+          intelligence,
+          strength,
+          full_name,
+          power: Power,
+          combat,
+          speed,
+        };
+        already_there = false;
+        var objList = [];
+        var prevList = JSON.parse(localStorage.getItem("objList"));
+        prevList.map((each) => {
+          if (each.name === obj.name) {
+            already_there = true;
+          }
+        });
+        if (!already_there) {
+          objList.push(obj);
+          objList = objList.concat(
+            JSON.parse(localStorage.getItem("objList") || "[]")
+          );
+          localStorage.setItem("objList", JSON.stringify(objList));
+        }
+
+        // console.log(name);
+        // localStorage.setItem("name", JSON.stringify(obj));
+        // console.log(localStorage.getItem("name"));
+        button.textContent = "UnFavourite";
+      });
+      button.addEventListener("click", function (event) {
+        if (already_there) {
+          var filtered = prevList.filter((item) => item.name != name);
+          localStorage.setItem("objList", JSON.stringify(filtered));
+          button.textContent = "Favourite";
+          console.log(localStorage.getItem("objList"));
+          already_there = false;
+        }
+      });
+
+      //these are here for the animation that is there for showing the details
+
+      detail_button.addEventListener(
         "click",
         function (event) {
           console.log("click ho rha hai");
@@ -204,6 +265,70 @@ if (document.URL.includes("SuperHero.html")) {
         },
         false
       );
+    });
+  });
+}
+
+if (document.URL.includes("Favourites.html")) {
+  // console.log("yaha bhee pahuch gyee");
+  // localStorage.removeItem("objList");
+  var fav_superhero_list = JSON.parse(localStorage.getItem("objList"));
+  console.log("list", fav_superhero_list);
+
+  fav_superhero_list.map((each) => {
+    var container_div = document.createElement("div");
+    container_div.className = "container";
+    var image_div = document.createElement("div");
+    image_div.className = "image";
+    var Image = document.createElement("img");
+    Image.src = each.image;
+    var detail_div = document.createElement("div");
+    detail_div.className = "details";
+    var name_div = document.createElement("div");
+    name_div.className = "name";
+    var name_heading = document.createElement("h1");
+    name_heading.textContent = each.name;
+    var full_name_h4 = document.createElement("h4");
+    full_name_h4.textContent = "Full-name: " + each.full_name;
+    var intelligence_h4 = document.createElement("h4");
+    intelligence_h4.textContent = "Intelligence: " + each.intelligence;
+    var strength_h4 = document.createElement("h4");
+    strength_h4.textContent = "Strength: " + each.strength;
+    var speed_h4 = document.createElement("h4");
+    speed_h4.textContent = "Speed: " + each.speed;
+    var power_h4 = document.createElement("h4");
+    power_h4.textContent = "Power: " + each.power;
+    var combat_h4 = document.createElement("h4");
+    combat_h4.textContent = "combat: " + each.combat;
+    var button_div = document.createElement("div");
+    button_div.className = "button-div";
+    var button = document.createElement("button");
+    button.textContent = "UnFavourite";
+
+    //appending the divs to there parent divs
+    document.body.appendChild(container_div);
+    container_div.appendChild(image_div);
+    image_div.appendChild(Image);
+    container_div.appendChild(detail_div);
+    detail_div.appendChild(name_div);
+    name_div.appendChild(name_heading);
+    detail_div.appendChild(full_name_h4);
+    detail_div.appendChild(intelligence_h4);
+    detail_div.appendChild(strength_h4);
+    detail_div.appendChild(speed_h4);
+    detail_div.appendChild(power_h4);
+    detail_div.appendChild(combat_h4);
+    container_div.appendChild(button_div);
+    button_div.appendChild(button);
+
+    button.addEventListener("click", function (event) {
+      var filtered = fav_superhero_list.filter(
+        (item) => item.name != each.name
+      );
+      localStorage.setItem("objList", JSON.stringify(filtered));
+      button.textContent = "Favourite";
+      console.log(localStorage.getItem("objList"));
+      location.reload();
     });
   });
 }

@@ -29,26 +29,29 @@
   text-decoration: none;
 }
 .container {
-  width: 75%;
-  height: auto;
+  width: 85%;
+  height: 300px;
   display: flex;
-  border: 2px solid black;
+  flex-wrap: nowrap;
+  border: 1px solid lightgrey;
+  margin: auto;
+  margin-bottom: 20px;
 }
 .image {
-  width: 30%;
-  height: auto;
-  border: 1px dotted red;
+  width: 40%;
+  max-height: 100%;
 }
 .image img {
+  max-height: 100%;
   max-width: 100%;
 }
 .details {
   width: 68%;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-content: flex-end;
-  border: 2px dotted green;
+  justify-content: space-between; */
+
+  /* border: 2px dotted green; */
 }
 
 .name h1 {
@@ -56,7 +59,7 @@
 }
 .button-div {
   margin: auto;
-  float: right;
+  justify-content: end;
 }
 .button-div button {
   height: 40px;
