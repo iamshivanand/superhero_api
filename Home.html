@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <link rel="stylesheet" href="home.css" />
+    <script scr="jquery.js"></script>
   </head>
   <body>
     <div class="navbar">
@@ -13,7 +14,7 @@
       </div>
 
       <div class="nav-items">
-        <a href="SuperHero.html">Collection</a>
+        <!-- <a href="SuperHero.html">Collection</a> -->
         <a href="Favourites.html">Favourites</a>
       </div>
     </div>
@@ -21,15 +22,36 @@
       <div class="home-page-logo">
         <img src="assets\logo.jpg" alt="logo" />
       </div>
-      <div class="search-bar">
-        <form>
-          <input placeholder="Search..." type="text" />
+      <div id="search-bar-div" class="search-bar">
+        <form id="input-form">
+          <input
+            placeholder="Search..."
+            type="text"
+            name="txt"
+            value=""
+            id="input"
+          />
           <button type="submit" class="search-button">Search</button>
         </form>
+
         <div class="search-suggestions">
-          <h1>this is going to be the search-suggestions</h1>
+          <div class="image">
+            <img
+              src="https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fblogs-images.forbes.com%2Fjvchamary%2Ffiles%2F2016%2F03%2Fman_of_steel-1200x800.jpg"
+              alt="image"
+            />
+          </div>
+          <div class="details">
+            <div class="name">
+              <h1>Name</h1>
+            </div>
+            <div class="button-div">
+              <button><span id="">Favoutrite</span></button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <script src="SuperHero.js"></script>
   </body>
 </html>

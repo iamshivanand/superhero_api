@@ -1,5 +1,5 @@
-body {
-  margin: 0%;
+.body {
+  margin: 0px;
 }
 .navbar {
   height: 50px;
@@ -28,50 +28,16 @@ body {
 .nav-items a {
   text-decoration: none;
 }
-
-/* here is the css of home page body */
-.home-page-body {
-  margin: auto;
-  margin-top: 50px;
-  height: 70%;
+.container {
   width: 75%;
-  display: flex;
-  flex-direction: column;
-}
-.home-page-logo {
-  margin: auto;
-  width: 100%;
-  display: flex;
-}
-.home-page-logo img {
-  margin: auto;
-}
-.search-bar {
-  margin: auto;
-  width: 75%;
-}
-.search-bar input {
-  height: 40px;
-  width: 75%;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-}
-.search-button {
-  margin-top: 20px;
-  height: 40px;
-  width: 70px;
-}
-.search-suggestions {
   height: auto;
-  width: 75%;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  display: none;
+  display: flex;
+  border: 2px solid black;
 }
 .image {
   width: 30%;
   height: auto;
+  border: 1px dotted red;
 }
 .image img {
   max-width: 100%;
@@ -82,6 +48,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-content: flex-end;
+  border: 2px dotted green;
 }
 
 .name h1 {
